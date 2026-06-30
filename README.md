@@ -4,7 +4,7 @@ Olá! Meu nome é Lorena e este repositório reúne meus estudos de Java e Progr
 
 Aqui registro exercícios, desafios e pequenos projetos desenvolvidos ao longo da minha jornada de aprendizado. O objetivo é acompanhar minha evolução, praticar boas práticas de programação e construir uma base sólida para atuar como desenvolvedora de software.
 
-## Objetivos
+## 🎯 Objetivos
 
 - Aprender Java.
 - Dominar os conceitos de Programação Orientada a Objetos.
@@ -12,21 +12,21 @@ Aqui registro exercícios, desafios e pequenos projetos desenvolvidos ao longo d
 - Desenvolver pequenos projetos.
 - Construir um portfólio de desenvolvimento.
 
-## Estrutura
+## 🗂️ Estrutura do Repositório
 
-```text
-01-introducao/
-02-classes-e-objetos/
-03-encapsulamento/
-04-heranca/
-05-polimorfismo/
-06-interfaces/
-07-classes-abstratas/
-desafios/
-projetos/
-```
+Aqui você encontra a divisão dos conteúdos por tópicos de estudo:
 
-## Tecnologias
+- 📁 `01-introducao/` — Primeiros passos com a linguagem Java.
+- 📁 [02-classes-e-objetos/](./02-classes-e-objetos/) — Conceitos de classes, objetos, atributos e métodos. 👈 *Concluído!*
+- 📁 `03-encapsulamento/` — Modificadores de acesso, getters e setters (Em breve).
+- 📁 `04-heranca/` — Reutilização de código com estruturas herdadas (Em breve).
+- 📁 `05-polimorfismo/` — Sobrescrita e sobrecarga de métodos (Em breve).
+- 📁 `06-interfaces/` — Contratos e abstrações no ecossistema Java (Em breve).
+- 📁 `07-classes-abstratas/` — Modelagem de classes conceituais (Em breve).
+- 📁 `desafios/` — Resolução de problemas e lógica (Em breve).
+- 📁 `projetos/` — Aplicações práticas completas (Em breve).
 
-- Java
-- GitHub
+## 🛠️ Tecnologias
+
+- **Java**
+- **GitHub**
