@@ -17,7 +17,7 @@ Aqui você encontra a divisão dos conteúdos por tópicos de estudo:
 
 -  [01-introducao/](./01-introducao/) — Primeiros passos com a linguagem Java.
 -  [02-classes-e-objetos/](./02-classes-e-objetos/) — Conceitos de classes, objetos, atributos e métodos.
--  [03-encapsulamento/](./03-encapsulamento/) — Modificadores de acesso, getters e setters.
+-  [03-Encapsulamento/](./03-Encapsulamento/) — Modificadores de acesso, getters e setters.
 -  `04-heranca/` — Reutilização de código com estruturas herdadas (Em breve).
 -  `05-polimorfismo/` — Sobrescrita e sobrecarga de métodos (Em breve).
 -  `06-interfaces/` — Contratos e abstrações no ecossistema Java (Em breve).
