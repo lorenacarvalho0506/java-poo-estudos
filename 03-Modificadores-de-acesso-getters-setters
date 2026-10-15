@@ -1,0 +1,664 @@
+POO — ENCAPSULAMENTO, GETTERS, SETTERS E CONSTRUTORES
+
+
+1. ENCAPSULAMENTO
+
+Encapsulamento: protege os atributos do objeto e controla como eles podem ser acessados ou alterados.
+
+A ideia é validar as operações para evitar que o objeto fique em um estado inconsistente.
+
+Exemplo:
+
+a1.nota1 = -5;
+a1.nota2 = 12;
+
+Isso é um problema porque uma nota deveria estar entre 0 e 10.
+
+Com encapsulamento, podemos impedir esse tipo de alteração diretamente.
+
+
+------------------------------------------------------------
+
+2. VISIBILIDADE
+
+Os principais modificadores de acesso são:
+
+public → pode ser acessado de qualquer lugar.
+
+private → só pode ser acessado diretamente dentro da própria classe.
+
+protected → possui regras específicas relacionadas à herança.
+
+sem modificador → acesso dentro do mesmo pacote.
+
+
+ATRIBUTOS
+
+Boa prática:
+
+private String nome;
+private double nota1;
+private double nota2;
+
+Quando um atributo é private, outras classes não conseguem acessá-lo diretamente.
+
+
+MÉTODOS
+
+Os métodos podem ser públicos ou privados, dependendo do que queremos permitir.
+
+Exemplo:
+
+public double getNota1()
+
+→ pode ser chamado de fora da classe.
+
+Já:
+
+private void validarNota()
+
+→ só pode ser usado dentro da própria classe.
+
+
+------------------------------------------------------------
+
+3. PROBLEMA DE DEIXAR OS ATRIBUTOS PÚBLICOS
+
+class Aluno {
+
+    String nome;
+    double nota1;
+    double nota2;
+}
+
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Aluno a1 = new Aluno(); // construtor padrão
+
+        a1.nome = "Maria";
+        a1.nota1 = -5;
+        a1.nota2 = 12;
+
+        System.out.println(a1.nome);
+        System.out.println(a1.nota1);
+        System.out.println(a1.nota2);
+    }
+}
+
+
+O problema é:
+
+a1.nota1 = -5;
+a1.nota2 = 12;
+
+O programa aceita esses valores, mesmo que sejam inválidos.
+
+Isso pode deixar o objeto em um estado inconsistente.
+
+
+------------------------------------------------------------
+
+4. USANDO PRIVATE
+
+class Aluno {
+
+    private String nome;
+    private double nota1;
+    private double nota2;
+}
+
+
+Agora:
+
+a1.nome = "Maria";
+a1.nota1 = -5;
+
+vai gerar erro se essas linhas estiverem fora da classe Aluno.
+
+Por quê?
+
+Porque os atributos são private.
+
+Então usamos métodos para controlar o acesso:
+
+get → pegar/obter um valor.
+
+set → alterar/definir um valor.
+
+
+------------------------------------------------------------
+
+5. GETTER — GET
+
+Get → obter.
+
+Estrutura:
+
+public tipoDeRetorno getAtributo() {
+    return atributo;
+}
+
+
+Características:
+
+- Normalmente é public.
+- Não possui parâmetros.
+- Serve para obter/consultar um atributo.
+- Precisa retornar um valor.
+- Por isso, normalmente não é void.
+
+
+Exemplo:
+
+public String getNome() {
+    return nome;
+}
+
+
+public double getNota1() {
+    return nota1;
+}
+
+
+Uso:
+
+System.out.println(a1.getNome());
+System.out.println(a1.getNota1());
+
+
+------------------------------------------------------------
+
+6. SETTER — SET
+
+Set → definir/alterar.
+
+Estrutura:
+
+public void setAtributo(tipo valor) {
+    atributo = valor;
+}
+
+
+Características:
+
+- Normalmente é public.
+- É void.
+- Pode receber parâmetros.
+- Serve para alterar um atributo.
+- Pode conter condições para validar o valor.
+
+
+Exemplo:
+
+public void setNota1(double valor) {
+
+    if (valor >= 0 && valor <= 10) {
+        nota1 = valor;
+    }
+}
+
+
+Agora:
+
+a1.setNota1(-1);
+
+não altera a nota, porque -1 não passa pela condição.
+
+
+------------------------------------------------------------
+
+7. VOID E ELSE IF
+
+Um método void pode ter if, else e else if normalmente.
+
+O que não pode é colocar a declaração de um método dentro de um if, else ou else if.
+
+ERRADO:
+
+if (condicao) {
+
+} else if (outraCondicao) {
+
+    public void fazerAlgo() {
+
+    }
+}
+
+
+Métodos devem ser declarados dentro da classe, mas não dentro de if, else ou else if.
+
+void significa apenas que o método não retorna um valor.
+
+
+------------------------------------------------------------
+
+8. CONSTRUTOR
+
+O construtor é executado quando criamos um objeto.
+
+Aluno a1 = new Aluno();
+
+
+Quando não criamos nenhum construtor, o Java fornece um construtor padrão sem parâmetros.
+
+Por isso:
+
+Aluno a1 = new Aluno();
+
+é possível.
+
+
+Os atributos recebem seus valores padrão:
+
+String  → null
+double  → 0.0
+int     → 0
+boolean → false
+
+
+Exemplo:
+
+class Aluno {
+
+    String nome;
+    double nota1;
+    double nota2;
+}
+
+
+Aluno a1 = new Aluno();
+
+System.out.println(a1.nome);
+
+
+Resultado:
+
+null
+
+
+Porque nenhum valor foi atribuído a nome.
+
+
+------------------------------------------------------------
+
+9. CRIANDO NOSSO PRÓPRIO CONSTRUTOR
+
+Podemos criar um construtor para que o objeto já seja criado com valores.
+
+class Aluno {
+
+    private String nome;
+    private double nota1;
+    private double nota2;
+
+    public Aluno(String nome, double nota1, double nota2) {
+
+        this.nome = nome;
+        this.nota1 = nota1;
+        this.nota2 = nota2;
+    }
+}
+
+
+Agora:
+
+Aluno a1 = new Aluno("Zé", 10, 9);
+
+
+O objeto já começa com:
+
+nome = Zé
+nota1 = 10
+nota2 = 9
+
+
+THIS
+
+this.nome = nome;
+
+
+O primeiro:
+
+this.nome
+
+é o atributo da classe.
+
+O segundo:
+
+nome
+
+é o parâmetro recebido pelo construtor.
+
+
+------------------------------------------------------------
+
+10. EXEMPLO COMPLETO — ALUNO
+
+class Aluno {
+
+    private String nome;
+    private double nota1;
+    private double nota2;
+
+    // Construtor
+    public Aluno(String nome, double nota1, double nota2) {
+        this.nome = nome;
+        this.nota1 = nota1;
+        this.nota2 = nota2;
+    }
+
+    // Setter com validação
+    public void setNota1(double valor) {
+
+        if (valor >= 0 && valor <= 10) {
+            nota1 = valor;
+        }
+    }
+
+    // Getter
+    public String getNome() {
+        return nome;
+    }
+
+    // Getter
+    public double getNota1() {
+        return nota1;
+    }
+
+    // toString
+    public String toString() {
+        return "Nome: " + nome +
+               " | Nota 1: " + nota1 +
+               " | Nota 2: " + nota2;
+    }
+}
+
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Aluno a1 = new Aluno("Zé", 10, 9);
+
+        // Teste: -1 não será atribuído
+        // porque não passa pela validação.
+        a1.setNota1(-1);
+
+        System.out.println("Nome do aluno: " + a1.getNome());
+        System.out.println("Nota do aluno: " + a1.getNota1());
+    }
+}
+
+
+------------------------------------------------------------
+
+11. BOA PRÁTICA
+
+Uma boa prática é colocar condições de validação antes de alterar atributos.
+
+Exemplo:
+
+public void setNota1(double valor) {
+
+    if (valor >= 0 && valor <= 10) {
+        nota1 = valor;
+    }
+}
+
+
+Assim, o objeto não aceita qualquer valor.
+
+
+A ideia:
+
+atributo privado
+       ↓
+método controla o acesso
+       ↓
+validação
+       ↓
+atributo recebe o valor
+
+
+------------------------------------------------------------
+
+12. EXEMPLO — CONTA BANCÁRIA
+
+class Conta {
+
+    private double saldo;
+
+    public Conta(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public void depositar(double valor) {
+
+        if (valor > 0) {
+            saldo += valor;
+        }
+    }
+
+    public void sacar(double valor) {
+
+        if (valor > 0 && valor <= saldo) {
+            saldo -= valor;
+        }
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+}
+
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Conta c = new Conta(3000);
+
+        c.depositar(1000);
+        c.depositar(2000);
+
+        System.out.println("Saldo atual: " + c.getSaldo());
+
+        c.sacar(500);
+
+        System.out.println("Saldo atual: " + c.getSaldo());
+    }
+}
+
+
+O que está acontecendo?
+
+Saldo inicial:
+
+3000
+
+
+Depois:
+
+c.depositar(1000);
+
+fica:
+
+4000
+
+
+Depois:
+
+c.depositar(2000);
+
+fica:
+
+6000
+
+
+Depois:
+
+c.sacar(500);
+
+fica:
+
+5500
+
+
+O saldo não pode ser alterado diretamente:
+
+c.saldo = -5000; // ERRO
+
+
+porque ele é private.
+
+A alteração precisa passar pelos métodos da classe.
+
+
+------------------------------------------------------------
+
+13. MÉTODO calcularMedia()
+
+Os métodos também podem realizar operações usando os atributos privados.
+
+class Aluno {
+
+    private String nome;
+    private double nota1;
+    private double nota2;
+
+    public Aluno(String nome, double nota1, double nota2) {
+        this.nome = nome;
+        this.nota1 = nota1;
+        this.nota2 = nota2;
+    }
+
+    public double calcularMedia() {
+        return (nota1 + nota2) / 2;
+    }
+
+    public String toString() {
+        return String.format(
+            "Nome: %s | Média: %.2f",
+            nome,
+            calcularMedia()
+        );
+    }
+}
+
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Aluno a1 = new Aluno("Zé", 10, 9);
+        Aluno a2 = new Aluno("Maria", 5, 8);
+
+        System.out.println(a1);
+        System.out.println(a2);
+    }
+}
+
+
+Resultado:
+
+Nome: Zé | Média: 9,50
+Nome: Maria | Média: 6,50
+
+
+------------------------------------------------------------
+
+14. toString()
+
+O método toString() define como o objeto será representado quando for impresso.
+
+Exemplo:
+
+public String toString() {
+    return "Nome: " + nome;
+}
+
+
+Então:
+
+System.out.println(a1);
+
+chama automaticamente o toString() do objeto.
+
+
+------------------------------------------------------------
+
+15. RESUMO
+
+ENCAPSULAMENTO
+↓
+Proteger os dados do objeto
+↓
+Usar private nos atributos
+↓
+Controlar o acesso através de métodos
+↓
+Validar os valores
+↓
+Evitar estado inconsistente
+
+
+PRIVATE
+
+private double nota;
+
+→ somente a própria classe acessa diretamente.
+
+
+GET
+
+public double getNota() {
+    return nota;
+}
+
+→ pega/obtém o valor.
+
+
+SET
+
+public void setNota(double valor) {
+    nota = valor;
+}
+
+→ altera/define o valor.
+
+
+CONSTRUTOR
+
+public Aluno(String nome) {
+    this.nome = nome;
+}
+
+→ inicializa o objeto quando ele é criado.
+
+
+TOSTRING
+
+public String toString() {
+    return nome;
+}
+
+→ define como o objeto será representado quando for usado, por exemplo:
+
+System.out.println(a1);
+
+
+VOID
+
+public void sacar(double valor)
+
+→ o método não retorna um valor.
+
+
+IMPORTANTE:
+
+void não significa que o método não pode ter parâmetros ou if/else.
+
+void significa apenas que o método não retorna um valor.
